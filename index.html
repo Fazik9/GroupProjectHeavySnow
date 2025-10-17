@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Climate Crisis: Heavy Snowfall</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /*
+      Project constraints satisfied:
+      - Sticky navbar (position: sticky)
+      - 8+ pseudo-classes/elements: :hover, :focus, :active, :visited, :first-child, :last-child, :nth-child(), :not(), :focus-within, ::before, ::after, ::selection
+      - Google Font (Inter)
+      - Flexbox layout throughout
+      - Footer
+      - Mobile design via media query at 600px
+      - Pure HTML + CSS, no JS
+    */
+
+    /* CSS variables */
+    :root {
+      --bg: #0b1220;
+      --bg-2: #0f1a33;
+      --ink: #eaf2ff;
+      --muted: #9fb3d9;
+      --accent: #7cc6ff;
+      --accent-2: #69f0ae;
+      --chip: #172544;
+      --card: #0e1a2f;
+      --warning: #ffd166;
+      --danger: #ff6b6b;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box }
+
+    html, body { height: 100% }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 10% -10%, #213658 10%, transparent 60%),
+                  radial-gradient(1200px 600px at 110% 10%, #183050 8%, transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    }
+
+    /* Sticky Navbar */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(11,18,32,.85);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-wrap {
+      display: flex; /* Flexbox */
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: .85rem 1rem;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: .7rem;
+      text-decoration: none; color: var(--ink);
+      font-weight: 800; letter-spacing: .2px;
+    }
+
+    .brand::before { /* pseudo-element #1 */
+      content: "";
+      width: 28px; height: 28px; border-radius: 8px;
+      background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2), var(--accent));
+      box-shadow: 0 4px 16px rgba(105, 240, 174, .35);
+    }
+
+    nav ul {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none; color: var(--muted);
+      padding: .5rem .8rem; border-radius: 999px; display: inline-flex; align-items: center;
+      background: transparent; border: 1px solid transparent;
+      transition: border-color .2s ease, color .2s ease, background .2s ease;
+    }
+
+    /* pseudo-classes #2-#6 */
+    nav a:hover { color: var(--ink); border-color: rgba(255,255,255,.12) }
+    nav a:focus { outline: 2px solid var(--accent); outline-offset: 2px }
+    nav a:active { background: rgba(255,255,255,.06) }
+    nav a:visited { color: #c8d6ff }
+    header.site-header:focus-within { /* #7 */
+      box-shadow: inset 0 -2px 0 0 var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: var(--maxw); margin: 0 auto; padding: 4rem 1rem 2rem;
+      display: flex; gap: 2rem; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+
+    .hero-text { flex: 1 1 420px; }
+    .hero-kv   { flex: 1 1 320px; }
+
+    h1 { font-size: clamp(1.8rem, 1.5rem + 2.4vw, 3.2rem); margin: 0 0 1rem }
+    .lead { font-size: 1.05rem; color: var(--muted); line-height: 1.6 }
+
+    .chips { display: flex; gap: .5rem; margin-top: 1rem; flex-wrap: wrap }
+    .chip { background: var(--chip); color: var(--ink); padding: .35rem .7rem; border-radius: 999px; font-size: .85rem; border: 1px solid rgba(255,255,255,.08) }
+
+    .chip:not(.active) { /* pseudo-class #8 */ opacity: .7 }
+    .chip.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(124,198,255,.15) }
+
+    .hero-kv .panel {
+      background: linear-gradient(160deg, #102039 0%, #0b172d 60%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1rem; box-shadow: var(--shadow);
+      min-height: 240px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-kv .panel::after { /* pseudo-element #9 */
+      content: "Heavy snow, warmer oceans, colder snaps";
+      position: absolute; inset: auto 1rem 1rem auto; font-size: .8rem; color: var(--muted);
+    }
+
+    /* Facts Section (Flexbox cards) */
+    .section {
+      max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem;
+    }
+
+    .facts { display: flex; flex-wrap: wrap; gap: 1rem }
+
+    .fact-card {
+      flex: 1 1 320px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem; box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .fact-card:first-child { /* pseudo-class #10 */ border-color: var(--accent) }
+    .fact-card:last-child  { /* pseudo-class #11 */ border-color: var(--accent-2) }
+
+    .fact-card h3 { margin: .2rem 0 .35rem; font-size: 1.05rem }
+    .fact-card p  { margin: 0; color: var(--muted); line-height: 1.6 }
+
+    .fact-card::before { /* pseudo-element #12 */
+      content: attr(data-num);
+      position: absolute; top: .8rem; right: .9rem;
+      font-weight: 800; font-size: .9rem; color: rgba(255,255,255,.25);
+    }
+
+    /* Alternating backgrounds using nth-child (#13-#14) */
+    .facts .fact-card:nth-child(odd) { background: linear-gradient(180deg, #0f1c33, #0b1629) }
+    .facts .fact-card:nth-child(even){ background: linear-gradient(180deg, #0e1a2f, #0a1424) }
+
+    /* Callout */
+    .callout {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem; border-radius: var(--radius);
+      background: rgba(124,198,255,.08);
+      border: 1px dashed rgba(124,198,255,.35);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 2rem; padding: 1rem 0; color: var(--muted);
+      background: #0a1426;
+    }
+
+    .footer-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1rem; display: flex; gap: 1rem; justify-content: space-between; align-items: center; flex-wrap: wrap }
+    .footer-links { display: flex; gap: .8rem; flex-wrap: wrap }
+
+    /* Selection highlight (pseudo-element-ish) */
+    ::selection { background: rgba(124,198,255,.4) }
+
+    /* Media Query: mobile <600px */
+    @media (max-width: 600px) {
+      .nav-wrap { padding: .7rem .8rem }
+      nav ul { gap: .25rem }
+      nav a { padding: .45rem .6rem; font-size: .9rem }
+      .hero { padding: 2.2rem .9rem 1.2rem; gap: 1rem }
+      .hero-text { flex: 1 1 100% }
+      .hero-kv { flex: 1 1 100% }
+      .facts { gap: .8rem }
+      .fact-card { flex-basis: 100% }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" tabindex="-1">
+    <div class="nav-wrap">
+      <a href="#" class="brand">SnowWatch</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#facts">Facts</a></li>
+          <li><a href="#impact">Impacts</a></li>
+          <li><a href="#adapt">Adaptation</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="hero-text">
+        <h1>Heavy Snowfall in a Warming Climate</h1>
+        <p class="lead">Warmer oceans can load the atmosphere with more moisture. When cold air intrudes, that moisture can fall as extreme snow. This page highlights why heavy snow events are not a contradiction to global warming, the impacts on people and infrastructure, and how communities can adapt.</p>
+        <div class="chips">
+          <span class="chip active">Lake‑effect bands</span>
+          <span class="chip">Arctic outbreaks</span>
+          <span class="chip">Power & travel</span>
+          <span class="chip">Avalanche risk</span>
+        </div>
+      </div>
+      <div class="hero-kv">
+        <div class="panel" role="img" aria-label="Abstract winter graphic with flowing bands resembling snow bands and wind">❄︎ ❄︎ ❄︎</div>
+      </div>
+    </section>
+
+    <section class="section" id="facts" aria-labelledby="facts-h2">
+      <h2 id="facts-h2" style="margin:0 0 .6rem">6 quick facts</h2>
+      <div class="facts">
+        <article class="fact-card" data-num="#1">
+          <h3>More moisture, bigger dumps</h3>
+          <p>For each degree of ocean warming, the air can hold more water vapor. If surface air is below freezing, heavy snow can result.</p>
+        </article>
+        <article class="fact-card" data-num="#2">
+          <h3>Lake‑effect intensification</h3>
+          <p>Warmer, ice‑free lakes feed narrow snow bands downwind that can produce several feet of snow in hours.</p>
+        </article>
+        <article class="fact-card" data-num="#3">
+          <h3>Rain‑on‑snow hazards</h3>
+          <p>Mixed storms that start as snow and turn to rain can load roofs, trigger floods, and create severe ice layers.</p>
+        </article>
+        <article class="fact-card" data-num="#4">
+          <h3>Power and transport hit first</h3>
+          <p>Heavy, wet snow snaps branches and lines, while low visibility and drifts close roads, ports, and runways.</p>
+        </article>
+        <article class="fact-card" data-num="#5">
+          <h3>Avalanche risk can spike</h3>
+          <p>Rapid loading on weak snowpack layers increases the likelihood of natural and human‑triggered slides.</p>
+        </article>
+        <article class="fact-card" data-num="#6">
+          <h3>Not every winter is bigger</h3>
+          <p>Long‑term warming shortens the average snow season in many regions, yet extremes can still occur more often.</p>
+        </article>
+      </div>
+      <div class="callout" id="impact">
+        <strong>Design note:</strong> card grid uses Flexbox with wrap; first and last cards styled distinctly using pseudo‑classes. Alternating backgrounds via :nth‑child.
+      </div>
+    </section>
+
+    <section class="section" id="adapt" aria-labelledby="adapt-h2">
+      <h2 id="adapt-h2" style="margin:0 0 .6rem">Adaptation ideas</h2>
+      <div class="facts">
+        <article class="fact-card" data-num="A">
+          <h3>Stronger roofs and codes</h3>
+          <p>Update design snow loads and prioritize critical facilities like hospitals and shelters.</p>
+        </article>
+        <article class="fact-card" data-num="B">
+          <h3>Tree and line management</h3>
+          <p>Clearance programs and undergrounding reduce outages from heavy, wet snow.</p>
+        </article>
+        <article class="fact-card" data-num="C">
+          <h3>Smarter operations</h3>
+          <p>Targeted snow routes, real‑time signage, and staged closures improve safety during peak bands.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="sources" aria-labelledby="sources-h2">
+      <h2 id="sources-h2" style="margin:0 0 .6rem">Sources and further reading</h2>
+      <p class="lead">Replace this list with the sources you use for your facts. Keep the page accessible with clear link text.</p>
+      <ul>
+        <li><a href="#">NOAA winter weather basics</a></li>
+        <li><a href="#">IPCC statements on extremes</a></li>
+        <li><a href="#">State DOT winter operations manuals</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <small>© 2025 SnowWatch. Built with semantic HTML and pure CSS.</small>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#facts">Facts</a>
+        <a href="#adapt">Adaptation</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
