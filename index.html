@@ -22,22 +22,34 @@
     */
 
     /* CSS variables */
-    
-:root {
-  --bg: #0b1220;
-  --bg-2: #0f1a33;
-  --ink: #eaf1ff;
-  --muted: #97b3d9;
-  --accent: #7cc0ff;
-  --accent-2: #69f0ae;
-  --chip: #17254a;
-  --card: #0e124f;
-  --warning: #ffb366;
-  --danger: #ff6b6b;
-  --radius: 10px;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --maxw: 1100px;
-} 
+    :root {
+      --bg: #0b1220;
+      --bg-2: #0f1a33;
+      --ink: #eaf2ff;
+      --muted: #9fb3d9;
+      --accent: #7cc6ff;
+      --accent-2: #69f0ae;
+      --chip: #172544;
+      --card: #0e1a2f;
+      --warning: #ffd166;
+      --danger: #ff6b6b;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --maxw: 1100px;
+    }
+
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#101820;
+        --bg-2:#181b22;
+        --ink:#f3f3f3;
+        --muted:#97b3d9
+        --accent:#7cc0ff;
+        --accent-2:#69f0ae;
+        --card:#202735;
+        --chip:#1a2230;
+      }
+    }
         
 
     * { box-sizing: border-box }
@@ -147,31 +159,17 @@
     .facts { display: flex; flex-wrap: wrap; gap: 1rem }
 
     .fact-card {
-  flex: 1 1 320px;
-  background: var(--card);
-  border: 1px solid #a97fff
-  border-radius: var(--radius);
-  box-shadow: 0 0 12px rgba(169, 127, 255, 0.35) 
-  padding: 1rem 1.1rem;
-  position: relative;
-}
+      flex: 1 1 320px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem; box-shadow: var(--shadow);
+      position: relative;
     }
 
     .fact-card:first-child { /* pseudo-class #10 */ border-color: var(--accent) }
-.fact-card:last-child { /* pseudo-class #11 */ border-color: var(--accent-2) }
+    .fact-card:last-child  { /* pseudo-class #11 */ border-color: var(--accent-2) }
 
-.fact-card:first-child,
-.fact-card:nth-child(2),
-.fact-card:nth-child(3),
-.fact-card:nth-child(4),
-.fact-card:nth-child(5) {
-  border-color: #a97fff !important;
-}
-
-.fact-card:nth-child(6) {
-  border-color: #00ffb0 !important;
-}
-    
     .fact-card h3 { margin: .2rem 0 .35rem; font-size: 1.05rem }
     .fact-card p  { margin: 0; color: var(--muted); line-height: 1.6 }
 
