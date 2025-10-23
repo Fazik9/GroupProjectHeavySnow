@@ -158,10 +158,18 @@
     }
 
     .fact-card:first-child { /* pseudo-class #10 */ border-color: var(--accent) }
-    .fact-card:last-child  { /* pseudo-class #11 */ border-color: var(--accent-2) }
-    .fact-card:first-child,
-    .fact-card:last-child {
+.fact-card:last-child { /* pseudo-class #11 */ border-color: var(--accent-2) }
+
+.fact-card:first-child,
+.fact-card:nth-child(2),
+.fact-card:nth-child(3),
+.fact-card:nth-child(4),
+.fact-card:nth-child(5) {
   border-color: #a97fff !important;
+}
+
+.fact-card:nth-child(6) {
+  border-color: #00ffb0 !important;
 }
     
     .fact-card h3 { margin: .2rem 0 .35rem; font-size: 1.05rem }
