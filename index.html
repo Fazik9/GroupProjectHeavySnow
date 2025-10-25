@@ -137,6 +137,11 @@
     .chip:not(.active) { /* pseudo-class #8 */ opacity: .7 }
     .chip.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(124,198,255,.15) }
 
+    .chip:first-child.active {
+     border-color: #ffffff;
+     box-shadow: 0 0 0 2px #ffffff;
+    }
+    
     .hero-kv .panel {
       background: linear-gradient(160deg, #102039 0%, #0b172d 60%);
       border: 1px solid rgba(255,255,255,.08);
